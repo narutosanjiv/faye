@@ -10,7 +10,11 @@ require 'rack'
 require 'set'
 require 'time'
 require 'uri'
-require 'yajl'
+if RUBY_PLATFORM == "java"
+  require 'json'
+else
+  require 'yajl'
+end
 
 module Faye
   VERSION = '0.8.6'

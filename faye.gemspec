@@ -22,7 +22,12 @@ Gem::Specification.new do |s|
   s.add_dependency "eventmachine", ">= 0.12.0"
   s.add_dependency "faye-websocket", ">= 0.4.0"
   s.add_dependency "rack", ">= 1.0.0"
-  s.add_dependency "yajl-ruby", ">= 1.0.0"
+  if RUBY_PLATFORM == "java"
+    s.add_dependency "json_pure"
+  else
+    s.add_dependency "yajl-ruby", ">= 1.0.0"
+  end
+  
 
   s.add_development_dependency "compass", "~> 0.10.0"
   s.add_development_dependency "jake", ">= 1.1.1"
@@ -30,10 +35,20 @@ Gem::Specification.new do |s|
   s.add_development_dependency "rspec"
   s.add_development_dependency "rack-proxy"
   s.add_development_dependency "rack-test"
-  s.add_development_dependency "rainbows", ">= 1.0.0"
+  if RUBY_PLATFORM == "java"
+
+    s.add_development_dependency "puma"
+  else
+    s.add_development_dependency "rainbows", ">= 1.0.0"
+  end
   s.add_development_dependency "RedCloth", "~> 3.0.0"
   s.add_development_dependency "sinatra"
   s.add_development_dependency "staticmatic"
-  s.add_development_dependency "thin", ">= 1.2.0"
+  
+  if RUBY_PLATFORM == "java"
+    s.add_development_dependency "goliath"
+  else
+    s.add_development_dependency "thin", ">= 1.2.0"
+  end
 end
 
